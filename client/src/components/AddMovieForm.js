@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import Movie from './Movie';
 
 const AddMovieForm = (props) => {
     const { setMovies } = props;
@@ -13,12 +14,6 @@ const AddMovieForm = (props) => {
 		metascore: 0,
 		description: ""
     })
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/movies/${id}`)
-            .then(res => {
-                setNewMovie(res.data);
-            }).catch(err => {console.log(err)})
-    }, [])
 
     const handleChange = e => {
        
@@ -44,7 +39,7 @@ const AddMovieForm = (props) => {
             <div className="modal-content">
                 <form onSubmit={handleSubmit}>
                     <div className="modal-header">
-                        <h4 className="modal-title">Add a new movie</h4>
+                        <h4 className="modal-title">Adding <strong>{movie.title}</strong></h4>
                     </div>
                     <div className="modal-body">
                         <div className="form-group">
